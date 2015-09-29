@@ -1,0 +1,24 @@
+// style declarations for website footer
+
+#site-footer {
+    width: 100%;
+    background-color: $grey-bg-color;
+    margin-top: -$footer-height;
+    height: $footer-height;
+}
+
+#footer-content {
+    padding: 12px 0;
+    @include page-center();
+    font-size: 18px;
+}
+
+#footer-right {
+    float: right;
+}
+
+#footer-left {
+    a {
+        font-weight: 400;
+    }
+}
