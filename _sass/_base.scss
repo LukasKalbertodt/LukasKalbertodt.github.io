@@ -43,4 +43,8 @@ a:hover {
     padding-bottom: $footer-height;
 }
 
-@import "header", "footer";
+.page-content {
+    padding: 0 10px;
+}
+
+@import "header", "footer", "post";

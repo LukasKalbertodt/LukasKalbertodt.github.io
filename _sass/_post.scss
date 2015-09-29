@@ -1,0 +1,29 @@
+// style declarations for blog posts
+
+.post-header {
+    margin-bottom: 15px;
+}
+
+.post-title {
+    font-size: 35px;
+}
+
+.post-content {
+    font-family: Merriweather;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0 10px;
+    line-height: 31px;
+
+    p {
+        margin: 20px 0px;
+
+        code {
+            font-family: $mono-font;
+            background-color: $grey-bg-color;
+            border-radius: 5px;
+            border: 1px solid darken($grey-bg-color, 15%);
+            padding: 2px 4px;
+        }
+    }
+}
