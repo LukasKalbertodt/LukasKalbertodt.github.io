@@ -15,9 +15,11 @@ $link-color: #367700;
 $main-font: "Fira Sans";
 $mono-font: "Inconsolata";
 $title-size: 55px;
+$post-title-size: 35px;
 
-// distances
+// other
 $footer-height: 46px;
+$color-change: 300ms;
 
 // Using media queries with like this:
 // @include media-query($palm) {

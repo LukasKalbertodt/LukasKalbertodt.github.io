@@ -5,7 +5,7 @@
 }
 
 .post-title {
-    font-size: 35px;
+    font-size: $post-title-size;
 }
 
 .post-content {
@@ -24,6 +24,16 @@
             border-radius: 5px;
             border: 1px solid darken($grey-bg-color, 15%);
             padding: 2px 4px;
+        }
+    }
+
+    a {
+        transition: box-shadow 400ms, background-color 400ms;
+        border-radius: 5px;
+
+        &:hover {
+            box-shadow: 0 0 0px 5px $grey-bg-color;
+            background-color: $grey-bg-color;
         }
     }
 }

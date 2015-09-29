@@ -27,10 +27,10 @@ body {
 a {
     text-decoration: none;
     color: $link-color;
-}
 
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 #all {
@@ -47,4 +47,4 @@ a:hover {
     padding: 0 10px;
 }
 
-@import "header", "footer", "post";
+@import "header", "footer", "post", "index";

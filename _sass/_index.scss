@@ -1,0 +1,32 @@
+// style declarations for landing page
+
+.post-list li {
+    display: block;
+    margin-bottom: 90px;
+
+    .post-excerpt {
+        @extend .post-content;
+    }
+    .post-title {
+        @extend .post-title;
+        color: $bright-green;
+        transition: color $color-change;
+
+        &:hover {
+            text-decoration: none;
+            color: $link-color;
+        }
+    }
+
+    .continue-read {
+        font-size: 20px;
+        float: right;
+        margin-top: -5px;
+
+        svg {
+            fill: darken($link-color, 4%);
+            // fill: #132b00;
+            vertical-align: middle;
+        }
+    }
+}
