@@ -8,8 +8,12 @@
 }
 
 #header-img {
-    width: 128px;
     height: 128px;
+    transition: transform 500ms;
+
+    &:hover {
+        transform: scale(1.5);
+    }
 }
 
 #header-link {
@@ -29,18 +33,38 @@
 }
 
 #header-desc-border {
-    border-top: 1px solid $bright-green;
-    margin-top: 15px;
+    border-top: 1px solid lighten($bright-green, 50%);
+    // border-top: 1px solid $bright-green;
+    margin-top: -16px;
 }
 
 #header-desc {
-    margin-top: -16px;
+    margin: 0 auto;
+    margin-top: 15px;
 
     span {
+        padding: 0 15px;
+        background-color: $bg-color;
         color: $bright-green;
         font-weight: 300;
         font-size: 26px;
-        background-color: $bg-color;
-        padding: 0 15px;
+        white-space: nowrap;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #header-desc-border {
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 50%;
+
+    }
+
+    #header-desc {
+        span {
+            font-size: 22px;
+            padding: 0;
+            white-space: normal;
+        }
     }
 }

@@ -20,6 +20,8 @@ $green:    #3AE25C; //  operators, other keywords
     background-color: $bg-color;
     color: $body;
 
+    overflow: scroll;
+
     span {
         font-family: $mono-font;
     }
@@ -92,4 +94,11 @@ $green:    #3AE25C; //  operators, other keywords
     .vg { color: $blue; } /* Name.Variable.Global */
     .vi { color: $blue; } /* Name.Variable.Instance */
     .il { color: $cyan; } /* Literal.Number.Integer.Long */
+}
+
+@media only screen and (max-width: 600px) {
+    .highlight {
+        font-size: 14px;
+        margin: 10px -10px;
+    }
 }
