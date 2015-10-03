@@ -1,5 +1,30 @@
 // style declarations for landing page
 
+.blog-desc {
+    @extend .post-content;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: -15px;
+    // margin: 0 auto 50px auto;
+}
+
+.index-sep {
+    @extend #header-desc-border;
+    width: 45%;
+    margin: 30px auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .blog-desc {
+        width: 85%;
+    }
+
+    .index-sep {
+        width: 55%;
+        margin: 20px auto;
+    }
+}
+
 .post-list li {
     display: block;
     margin-bottom: 90px;

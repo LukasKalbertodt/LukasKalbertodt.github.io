@@ -16,7 +16,7 @@
     font-family: Merriweather;
     font-size: 20px;
     font-weight: 300;
-    margin: 0 10px;
+    margin: 0 10px 0px 10px;
     line-height: 31px;
 
     p {
@@ -43,6 +43,12 @@
     }
 }
 
+.post-bottom {
+    width: 50px;
+    margin: 50px auto 100px auto;
+    display: block;
+    opacity: 0.7;
+}
 
 @media only screen and (max-width: 600px) {
     .post-title {

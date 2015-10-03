@@ -20,7 +20,7 @@ $green:    #3AE25C; //  operators, other keywords
     background-color: $bg-color;
     color: $body;
 
-    overflow: scroll;
+    overflow-x: auto;
 
     span {
         font-family: $mono-font;
