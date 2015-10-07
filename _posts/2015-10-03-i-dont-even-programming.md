@@ -4,7 +4,9 @@ title: "I don't even programming"
 date:   2015-10-03
 ---
 
-*Exactly 8 pm. Exactly at  8pm the online sign-up form would be activated, the professor had said. And exactly then his students, including my girlfriend, would be able to sign up for their favourite time slot. This is precisely the level of accuracy you would expect from a German university professor. And this is precisely what did not happen that evening.*
+Exactly 8 pm. Exactly at  8pm the online sign-up form would be activated, the professor had said. And exactly then his students, including my girlfriend, would be able to sign up for their favourite time slot. This is precisely the level of accuracy you would expect from a German university professor. And this is precisely what did not happen that evening.
+
+----
 
 After half an hour, uncertainty spread throughout the already confused freshmen. I reassured my girlfriend that professors forgetting something like that is no exception -- rather the opposite is. Unfortunately our evening plans did not entirely consist of pressing `F5` every three seconds, so I felt like I could [finally use my computer science power in real life][xkcd].
 

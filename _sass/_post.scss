@@ -19,17 +19,50 @@
     margin: 0 10px 0px 10px;
     line-height: 31px;
 
+    h2 {
+        margin: 50px 0px -10px 10px;
+        font-size: 29px;
+    }
+
+    ul {
+        margin-left: 30px;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 15px;
+        border: 2px solid darken($grey-bg-color, 20);
+        margin: -10px 0;
+    }
+
+    img + em {
+        margin-top: 10px;
+        display: block;
+        margin-left: 20px;
+        margin-right: 20px;
+        color: darken($grey-bg-color, 60);
+        font-style: normal;
+        text-align: center;
+        font-size: 17px;
+    }
+
     p {
         margin: 30px 0px;
+    }
 
-        code {
-            font-family: $mono-font;
-            background-color: $grey-bg-color;
-            border-radius: 5px;
-            border: 1px solid darken($grey-bg-color, 15%);
-            padding: 2px 4px;
-            white-space: nowrap;
-        }
+    hr {
+        border: none;
+        border-top: 1px solid darken($grey-bg-color, 20);
+        margin: 0 20%;
+    }
+
+    code {
+        font-family: $mono-font;
+        background-color: $grey-bg-color;
+        border-radius: 5px;
+        border: 1px solid darken($grey-bg-color, 15%);
+        padding: 2px 4px;
+        white-space: nowrap;
     }
 
     a {
