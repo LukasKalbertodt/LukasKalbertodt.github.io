@@ -48,6 +48,12 @@
 
     p {
         margin: 30px 0px;
+
+        & > small {
+            font-size: 15px;
+            display: block;
+            line-height: 25px;
+        }
     }
 
     hr {
@@ -63,6 +69,20 @@
         border: 1px solid darken($grey-bg-color, 15%);
         padding: 2px 4px;
         white-space: nowrap;
+    }
+
+    pre {
+        border: 1px solid darken($grey-bg-color, 15%);
+        border-radius: 5px;
+        padding: 2px 5px;
+        margin: -7px 0px;
+        & > code {
+            white-space: pre;
+            font-family: $mono-font;
+            // padding: 2px 4px;
+            border: none;
+            background: none;
+        }
     }
 
     a {
@@ -105,5 +125,21 @@
                 white-space: normal;
             }
         }
+    }
+}
+
+.tldr {
+    border: 2px solid darken($grey-bg-color, 10);
+    border-radius: 5px;
+    margin: 30px 50px;
+    padding: 10px;
+    font-size: 18px;
+
+    h1 {
+        font-family: "Fira Sans";
+        color: darken($link-color, 3);
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 25px;
     }
 }
