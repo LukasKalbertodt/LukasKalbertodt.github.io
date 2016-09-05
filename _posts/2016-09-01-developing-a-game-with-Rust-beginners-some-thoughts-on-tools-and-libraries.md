@@ -84,6 +84,8 @@ First, we wanted to write an RFC during the practical, but discarded the idea du
 
 ---
 
+Hopefully a few thoughts mentioned here will be interesting for the Rust community. You can discuss this post [on reddit](https://www.reddit.com/r/rust/comments/519qku/plantex_an_openworld_exploration_game_with/d7aaex7), if you want.
+
 Personally, I am pretty satisfied with the result of this practical; you should certainly check out the game!
 This was probably the last programming practical I will oversee at this university, but I will give a Rust course in the semester starting in two months.
 I'm planning to report about that in the future!
