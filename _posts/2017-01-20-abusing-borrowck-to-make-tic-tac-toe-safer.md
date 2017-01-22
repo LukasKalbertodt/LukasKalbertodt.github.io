@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Abusing the Borrow Checker to make Tic-Tac-Toe safer"
+title:  "Using the Borrow Checker to make Tic-Tac-Toe safer"
 date:   2017-01-20
 ---
 
