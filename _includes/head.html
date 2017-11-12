@@ -9,4 +9,34 @@
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel='icon' href='/favicon.ico' type='image/x-icon' />
+
+    <script>
+        (function() {
+            var elem = document.getElementById('header-desc-inner');
+            if (elem) {
+                // Meh, now you found my secret list of awesome symbols :(
+                var options = [
+                    '🦀',
+                    '❤',
+                    '♫',
+                    'א',
+                    'φ',
+                    'ℂ',
+                    '🍂',
+                    '🐼',
+                    '🐧',
+                    '🐢',
+                    '🐁',
+                    '🐻',
+                    '🧀',
+                    '🍉',
+                    '🍆',
+                ];
+
+                elem.innerHTML = options[Math.floor(Math.random() * options.length)];
+            }
+
+            setTimeout(arguments.callee, 30000);
+        })();
+    </script>
 </head>
