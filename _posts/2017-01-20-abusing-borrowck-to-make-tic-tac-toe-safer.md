@@ -7,7 +7,7 @@ date:   2017-01-20
 This week's task of [the lecture "Programmieren in Rust" (German)][pir-gh] is to build a tic-tac-toe game. After implementing the required features, I tried to use the *borrow checker* and strong typing to avoid some bugs at compile time -- with partial success.
 
 <div class="tldr" markdown="1">
-# Key takeaways
+# 🔑 Key takeaways
 - strong typing avoids runtime bugs
 - with Rust's linear type system ("move semantics"), we can build types with the semantics of a key that can be used only once
 - using the borrow checker, we can ensure that some properties of a variable remain valid
