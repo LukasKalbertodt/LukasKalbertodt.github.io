@@ -73,7 +73,7 @@ The exact process should be decided via RFC.
 
 ---
 
-Hopefully you agree with me in that new avatars would be awesome! In that case you can express your agreement [on Reddit](TODO). Open questions:
+Hopefully you agree with me in that new avatars would be awesome! In that case you can express your agreement [on Reddit](https://www.reddit.com/r/rust/comments/7otw79/new_faces_for_our_lovely_bots_in_rust2018/). Open questions:
 
 
 - Should the contest's winner get some kind of prize (besides everlasting fame, of course)?
