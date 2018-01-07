@@ -37,7 +37,7 @@ Only Bors' avatar has some Rust-specifics to it, while the other two look like b
 You surely know [Ferris, the unofficial mascot of Rust](http://www.rustacean.net/), right?
 
 <center>
-    <img src="/assets/cover-ferris.png" style="width:60%;border:none;margin:10px;"/>
+    <img src="/assets/cover-ferris.png" style="width:60%;margin:10px;"/>
     <em style="margin-top: 0px">Source: cover of <a href="https://nostarch.com/Rust">the new Rust book</a></em>
 </center>
 
@@ -46,7 +46,7 @@ Instantly lovable, super cute, crazy cuddly -- simply *awesome*! Wouldn't it be 
 Well, *I* think it would be nice, so I propose to hold a **#Rust2018 Avatar Contest**!
 
 <center>
-    <img src="/assets/avatar-contest.jpg" style="width:95%;border:none;margin:10px;"/>
+    <img src="/assets/avatar-contest.jpg" style="width:95%;margin:10px;"/>
     <em style="margin-top: 0px">Yep, I drew this masterpiece.</em>
 </center>
 
@@ -58,7 +58,7 @@ This way we can use all the hidden creative power of the Rust community! The ide
 Bonus points for describing the bot's character! Personally, I imagine Bors to be a strict and grumpy (but nice!) old man, Highfive to be an extremely enthusiastic woman (which was probably influenced by the current avatar); and rfcbot to be a funny waiter with a bow tie (maybe a penguin, because penguins are awesome waiters!).
 
 <center>
-    <img src="/assets/penguin.jpg" style="width:30%;border:none;margin:10px;"/>
+    <img src="/assets/penguin.jpg" style="width:30%;margin:10px;"/>
     <em style="margin-top: 0px">I ... tried</em>
 </center>
 
