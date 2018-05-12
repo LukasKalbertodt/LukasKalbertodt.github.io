@@ -1,12 +1,10 @@
 # Site settings
 title: "Totoroot"
 email: lukas.kalbertodt@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  A blog about programming and stuff. I'm in love with Rust, so most of my
-  programming related posts are about that language.
+description: "A blog about programming, Rust, typography, language and stuff."
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://lukaskalbertodt.github.io" # the base hostname & protocol for your site
-github_username:  LukasKalbertodt
+github_username: LukasKalbertodt
 
 # Build settings
 markdown: kramdown
