@@ -1,0 +1,9 @@
+- other types
+    - phonetical palindromes
+    - mirror palindromes
+- Czech ch (lang)
+- Arabisch: buchstaben verändern ihre form je nach pos (lang) ??? Elisa fragen
+- Japanisch mit unterschiedlichen Scripten
+
+- Ligatures (technical)
+- Character ocunt?
