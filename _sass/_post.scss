@@ -141,6 +141,10 @@
         text-align: center;
         margin-bottom: 22px;
         margin-top: 8px;
+
+        &:before {
+            content: "";
+        }
     }
 }
 
