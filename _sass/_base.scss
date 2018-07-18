@@ -42,6 +42,7 @@ a {
     @include page-center();
     padding: 0px;
     padding-bottom: $footer-height;
+    position: relative;
 }
 
 .page-content {
