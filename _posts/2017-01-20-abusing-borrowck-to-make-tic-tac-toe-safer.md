@@ -18,8 +18,8 @@ This week's task of [the lecture "Programmieren in Rust" (German)][pir-gh] is to
 In tic-tac-toe ("TTT" from now on) you have a simple 3x3 grid where each cell can be empty or contain either a cross or a circle. To denote a cell, I'll be using the same notation used to denote a square on a chessboard, e.g. `[a3]`.
 
 <center>
-    <img src="/img/tictactoe.svg" style="width:50%;max-width:250px;border:none;margin:10px;"/><br />
-    <i>Standard TTT board with row and column labels</i>
+    <img src="/img/tictactoe.svg" style="width:50%;max-width:250px;border:none;margin:10px;"/>
+    <em>Standard TTT board with row and column labels</em>
 </center>
 
 

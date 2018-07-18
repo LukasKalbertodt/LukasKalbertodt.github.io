@@ -2,8 +2,12 @@
 
 #site-footer {
     width: 100%;
-    background-color: $grey-bg-color;
+    background-color: #26de81;
     height: $footer-height;
+
+    a {
+        color: #107d90;
+    }
 }
 
 #footer-content {

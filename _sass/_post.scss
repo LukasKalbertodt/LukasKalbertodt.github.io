@@ -14,10 +14,10 @@
 
 .post-content {
     font-family: Merriweather;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     margin: 0 10px 0px 10px;
-    line-height: 31px;
+    line-height: 29px;
 
     h2 {
         margin: 50px 0px -10px 10px;
@@ -48,14 +48,14 @@
         color: darken($grey-bg-color, 60);
         font-style: normal;
         text-align: center;
-        font-size: 17px;
+        font-size: 16px;
     }
 
     p {
         margin: 30px 0px;
 
         & > small {
-            font-size: 15px;
+            font-size: 14px;
             display: block;
             line-height: 25px;
         }
@@ -120,15 +120,15 @@
     border-radius: 5px;
     margin: 30px 50px;
     padding: 10px;
-    font-size: 18px;
+    font-size: 16px;
 
     h1 {
         font-family: "Fira Sans";
         color: darken($link-color, 3);
-        font-size: 24px;
+        font-size: 22px;
         text-align: center;
-        margin-bottom: 25px;
-        margin-top: 10px;
+        margin-bottom: 22px;
+        margin-top: 8px;
     }
 }
 
@@ -142,7 +142,13 @@
         position: absolute;
         top: 130px;
         height: 120px;
-        background: linear-gradient(to bottom, transparent, rgba($bg-color, 0.6), $bg-color);
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba($bg-color, 0.4),
+            rgba($bg-color, 0.9),
+            $bg-color
+        );
         z-index: 10;
         width: 100%;
 
@@ -159,6 +165,7 @@
             position: absolute;
             bottom: 5px;
             width: 100%;
+            height: 55px;
 
             &:focus {
                 outline: none;
@@ -192,7 +199,7 @@
 
     .post-content {
         margin: 0 5px;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 25px;
 
         p {
@@ -210,23 +217,17 @@
     }
 
     .tldr {
-        /*border: 2px solid darken($grey-bg-color, 10);*/
-        /*border-radius: 5px;*/
         margin: 20px 15px;
         padding: 3px;
-        font-size: 15px;
+        font-size: 14px;
 
         ul {
             margin-left: 20px;
         }
 
         h1 {
-            /*font-family: "Fira Sans";*/
-            /*color: darken($link-color, 3);*/
-            font-size: 20px;
-            /*text-align: center;*/
+            font-size: 19px;
             margin-bottom: 15px;
-            /*margin-top: 10px;*/
         }
     }
 }
