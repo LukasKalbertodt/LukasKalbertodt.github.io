@@ -2,11 +2,11 @@
 
 #site-footer {
     width: 100%;
-    background-color: #26de81;
+    background-color: #107d90;
     height: $footer-height;
 
     a {
-        color: #107d90;
+        color: #fff;
     }
 }
 
@@ -18,12 +18,6 @@
 
 #footer-right {
     float: right;
-}
-
-#footer-left {
-    a {
-        font-weight: 400;
-    }
 }
 
 @media only screen and (max-width: 450px) {
