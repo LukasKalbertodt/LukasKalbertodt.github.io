@@ -100,10 +100,11 @@
         padding: 2px 5px;
         margin: -7px 0px;
         overflow: auto;
+        line-height: 26px;
         & > code {
             white-space: pre;
             font-family: $mono-font;
-            // padding: 2px 4px;
+            padding: 2px 2px;
             border: none;
             background: none;
         }
