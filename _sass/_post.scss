@@ -20,17 +20,38 @@
     line-height: 29px;
 
     h2 {
-        margin: 50px 0px -10px 10px;
-        font-size: 29px;
+        margin: 55px 0px -10px 0px;
+        font-size: 24px;
+        font-weight: 900;
+
+        &:before {
+            content: "## ";
+            color: #aaa;
+        }
     }
 
     h1 {
-        margin: 60px 0px -5px 0px;
+        margin: 65px 0px -5px 0px;
         font-size: 30px;
+        font-weight: 900;
+
+        &:before {
+            content: "# ";
+            color: #aaa;
+        }
     }
 
     ul, ol {
         margin-left: 30px;
+
+        li {
+            p {
+                margin: 20px 0px;
+            }
+            pre {
+                margin: 0;
+            }
+        }
     }
 
     img {
@@ -68,10 +89,11 @@
     }
 
     code {
+        $inline-code-bg: #f4f4f0;
         font-family: $mono-font;
-        background-color: $grey-bg-color;
+        background-color: $inline-code-bg;
         border-radius: 5px;
-        border: 1px solid darken($grey-bg-color, 15%);
+        border: 1px solid darken($inline-code-bg, 5%);
         padding: 2px 4px;
         white-space: nowrap;
     }
@@ -82,10 +104,11 @@
         padding: 2px 5px;
         margin: -7px 0px;
         overflow: auto;
+        line-height: 26px;
         & > code {
             white-space: pre;
             font-family: $mono-font;
-            // padding: 2px 4px;
+            padding: 2px 2px;
             border: none;
             background: none;
         }
@@ -129,6 +152,17 @@
         text-align: center;
         margin-bottom: 22px;
         margin-top: 8px;
+
+        &:before {
+            content: "";
+        }
+    }
+
+    ul {
+        li {
+            line-height: 25px;
+            margin: 5px 0px;
+        }
     }
 }
 
@@ -213,6 +247,11 @@
         h1 {
             font-size: 24px;
             line-height: 29px;
+        }
+
+        h2 {
+            font-size: 20px;
+            line-height: 26px;
         }
     }
 
