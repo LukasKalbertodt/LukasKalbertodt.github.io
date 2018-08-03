@@ -89,10 +89,11 @@
     }
 
     code {
+        $inline-code-bg: #f4f4f0;
         font-family: $mono-font;
-        background-color: $grey-bg-color;
+        background-color: $inline-code-bg;
         border-radius: 5px;
-        border: 1px solid darken($grey-bg-color, 15%);
+        border: 1px solid darken($inline-code-bg, 5%);
         padding: 2px 4px;
         white-space: nowrap;
     }
@@ -154,6 +155,13 @@
 
         &:before {
             content: "";
+        }
+    }
+
+    ul {
+        li {
+            line-height: 25px;
+            margin: 5px 0px;
         }
     }
 }
