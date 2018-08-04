@@ -244,7 +244,7 @@ There are multiple ways one could try to solve this:
 
   Here, the `T: 's` bound is required to be able to express the reference for `Item`. But this restricts the `impl`! This bound plus `for<'s> Iterator<'s>` is equivalent to `for<'s> T: 's` which is equivalent to `T: 'static`. The effect is that `count` only works with `WindowsMut` if `T` is `'static`. Needlessly restrictive!
 
-- **`fn count<'s, I>(iter: &'s mut I)` (iterator by reference)**: this time we allow the caller the choose the lifetime by passing the iterator by reference. In theory, this is good: now the iterator doesn't live in our stackframe and the reference we get already has the correct lifetime for the `next()` call.
+- **`fn count<'s, I>(iter: &'s mut I)` (iterator by reference)**: this time we allow the caller to choose the lifetime by passing the iterator by reference. In theory, this is good: now the iterator doesn't live in our stackframe and the reference we get already has the correct lifetime for the `next()` call.
 
   And indeed, we can call `next()`. *Once*. Since the `next()` call requires a mutable `self`, calling it a second time results in a "cannot borrow `*iter` as mutable more than once at a time". I won't get into the details here, but this is simply how the borrow checker works. Usually the borrow checker will try to find the smallest possible lifetime for a call -- in order to "block" the reference for the smallest possible time/scope. But in this case, there is only one possible lifetime for the call: `'s`. Again: traits are invariant over their parameters, so the compiler doesn't have a choice.
 
