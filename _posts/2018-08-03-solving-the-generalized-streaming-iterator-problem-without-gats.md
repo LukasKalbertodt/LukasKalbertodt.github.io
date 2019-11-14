@@ -4,7 +4,7 @@ title:  "Solving the Generalized Streaming Iterator Problem without GATs"
 date:   2018-08-03
 ---
 
-**G**eneric **A**ssociated **T**ypes (GATs for short) are a long awaited extension to Rust's type system. They offer a way to work with higher kinded types -- a necessity in a couple of situations. A common example is the *streaming iterator*: an iterator able to return items borrowing from `self` (the iterator itself). Unfortunately, [GATs haven't even landed in nightly yet](https://github.com/rust-lang/rust/issues/44265). So while are waiting, we can try tackling the streaming iterator problem without GATs. In this post we explore three possible workarounds for situations where an associated type depends on the lifetime of a `&self` receiver.
+**G**eneric **A**ssociated **T**ypes (GATs for short) are a long awaited extension to Rust's type system. They offer a way to work with higher kinded types -- a necessity in a couple of situations. A common example is the *streaming iterator*: an iterator able to return items borrowing from `self` (the iterator itself). Unfortunately, [GATs haven't even landed in nightly yet](https://github.com/rust-lang/rust/issues/44265). So while we are waiting, we can try tackling the streaming iterator problem without GATs. In this post we explore three possible workarounds for situations where an associated type depends on the lifetime of a `&self` receiver.
 
 <div class="tldr" markdown="1">
 # 🔑 Key takeaways
