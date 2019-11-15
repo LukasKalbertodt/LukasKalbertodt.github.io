@@ -66,7 +66,7 @@ Unfortunately, this won't work: `parse` returns a `ParseIntError` (in this case)
 - *Non-solution*: panicking (panicking is for bugs only).
 - *Non-solution*: converting the error into a string and return `Result<_, String>` (loss of semantic information, should be avoided).
 - Creating a custom `enum { Io(io::Error), Parse(ParseIntError) }`.
-- Use a type erased error type like:
+- Use a type-erased error type like:
     - `Box<dyn std::error::Error>`
     - `failure::Error`
     - ... and others
@@ -86,9 +86,9 @@ Looking at what popular error handling crates offer, we can list features that p
 - Storing a backtrace with the error.
 - Creating an error from a string.
 
-The different libraries seem to target different use-cases, though. For example, `snafu` with its strongly typed errors and contexts seems to be a good fit for *libraries*. On the other hand, `anyhow` with its focus on the type-erased `Error` and on creating string errors and contexts seems to be more useful for *applications*. **Errors produced by libraries need to be understood by other code, errors produced by executables need to be understood by humans.**
+The different libraries seem to target different use-cases, though. For example, `snafu` with its strongly typed errors and contexts seems to be a good fit for *libraries*. On the other hand, `anyhow` with its focus on the type-erased `Error` and on creating string errors and contexts seems to be more useful for *applications*. After all, errors produced by libraries need to be understood by other code, errors produced by executables need to be understood by humans.
 
-A commonly requested language feature is "automatic `Ok(_)` wrapping": this would mean the programmer doesn't have to write `Ok(my_output)` or `Ok(())` anymore. People in favor of this feature argue that `Ok(_)` only distracts from the happy path and is annoying, while others would like to keep the explicitness of the current system.
+A commonly requested language feature is "automatic `Ok(_)` wrapping": this would mean the programmer doesn't have to write `Ok(my_return_value)` or `Ok(())` anymore. People in favor of this feature argue that `Ok(_)` only distracts from the happy path and is annoying to type, while others would like to keep the explicitness of the current system.
 
 
 
@@ -103,7 +103,7 @@ Libraries can't know whether their errors are handled or forwarded to a human, b
 
 In my attempts to report as much useful error information to the user as possible, I always end up with almost every function returning `Result<_, failure::Error>`. Since the errors are only reported to the user in string form, I don't care about strong typing. But in that case, the explicit return type is not worth a lot: all functions returning the same error does not convey a lot of semantic information. And for these functions, manually writing `Ok(_)` really feels like a chore without any benefit. *On the other hand*, for errors that are intended to be dealt with, the explicit `Result` and `Ok(_)` seem very useful.
 
-So *maybe* the Rust community's disagreement on automatic `Ok(_)` wrapping and other error handling topics partially stems from simply talking about different kinds of errors? Just like bugs should be treated differently, **_maybe_ we should find different solutions for the two types of "recoverable errors"?**
+So *maybe* the Rust community's disagreement on automatic `Ok(_)` wrapping and other error handling topics partially stems from simply talking about different kinds of errors? Just like bugs should be treated differently from other errors, **_maybe_ we should find different solutions for the two types of "recoverable errors"?**
 
 
 ## Ad-hoc anonymous sum-types
@@ -118,7 +118,7 @@ fn load_config_value(path: &Path) -> Result<u64, io::Error | ParseIntError> {
 }
 ```
 
-That way it would be super easy to explicitly list all kinds of errors that can occur while not being forced to write a lot of boilerplate code or use an error handling crate.
+That way it would be super easy to explicitly list all kinds of errors that can occur. Of course, this does not mean that this should be used everywhere, just like tuples (anonymous product types) should not be used everywhere. But this smooths out the difficulty curve: programmers don't have to jump from a simple `io::Error` to "custom enum" or "error handling crate" immediately.
 
 Anonymous sum types still require a lot of design work and are no-where near to being implemented. But I still think we should not forget their potential  when talking about error handling.
 
