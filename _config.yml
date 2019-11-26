@@ -1,5 +1,5 @@
 # Site settings
-title: "Totoroot"
+title: "Lukas' Blog"
 email: lukas.kalbertodt@gmail.com
 description: "A blog about programming, Rust, typography, language and stuff."
 baseurl: "" # the subpath of your site, e.g. /blog/
