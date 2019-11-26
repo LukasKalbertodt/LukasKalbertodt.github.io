@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rust 2020: Power to the Type System"
-date:   2019-11-13
+date:   2019-11-26
 ---
 
 This article does not contain any *new* ideas for #Rust2020, but I still wanted to voice my opinion and support some ideas from other posts.
@@ -28,7 +28,7 @@ Particularly, these features:
 I'm just saying it is important and should be prioritized.
 
 I think these features are essential because we should **bridge the gap between the type system of C++ and Rust**.
-There are still several things that *can* be ex-pressed in C++, but not in Rust, because Rust's type system lacks some type-level tools.
+There are still several things that *can* be expressed in C++, but not in Rust, simply because Rust's type system lacks some features.
 I personally found myself in such a situation a couple of times already and I can assure you that trying to find a workaround eats up *lots* of development time.
 And we would't want people choosing C++ instead of Rust because of that, right?
 Additionally, **these type system features are required for a number of other much-desired additions to the language**, like `impl Trait` in trait methods and `async` trait methods.
