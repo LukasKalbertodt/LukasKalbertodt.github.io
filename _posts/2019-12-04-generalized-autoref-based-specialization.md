@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Generalized Autoref-Based Specialization"
-date:   2019-12-01
+date:   2019-12-04
 ---
 
 A few weeks ago, dtolnay [introduced the idea of autoref-based specialization][original-description], which makes it possible to use specialization-like behavior on stable Rust.
@@ -85,7 +85,7 @@ impl<T: Tc> ViaC for &&T {}
 ```
 
 [If you try this](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=4ac63d20a3d19dc291150c28a91e2ba0), you will see that this fails.
-Assuming the type `Sc` only implements `Tc`, the call `(&Sc).foo()` results in "no method named `foo` found for type `&Sc` in the current scope".
+Assuming the type `struct Sc;` only implements `Tc`, the call `(&Sc).foo()` results in "no method named `foo` found for type `&Sc` in the current scope".
 
 This is simply because "autoref coercion" is only applied either zero or one time.
 The compiler does *not* add potentially infinitely many `&`s until the receiver type matches.
@@ -218,4 +218,4 @@ Autoderef-based specialization as explained in this post is more versatile than 
 The technique can be immensely useful when used together with macros, but is too limited and verbose for general adoption beyond those use-cases.
 A proper "specialization solution" is certainly required in Rust.
 
-I personally use autoderef-based specialization for the work-in-progress [`domsl` library](https://github.com/LukasKalbertodt/domsl), which is also the reason why I started toying dtolnay's idea in the first place.
+I personally use autoderef-based specialization for the work-in-progress [`domsl` library](https://github.com/LukasKalbertodt/domsl), which is also the reason why I started toying with dtolnay's idea in the first place.
