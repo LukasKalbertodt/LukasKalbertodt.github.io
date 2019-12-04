@@ -19,6 +19,12 @@
     margin: 0 10px 0px 10px;
     line-height: 29px;
 
+    h4 {
+        margin: 45px 0px -10px 0px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
     h2 {
         margin: 55px 0px -10px 0px;
         font-size: 24px;
@@ -41,12 +47,17 @@
         }
     }
 
+    &>ul, &>ol {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
     ul, ol {
         margin-left: 30px;
 
         li {
             p {
-                margin: 20px 0px;
+                margin: 15px 0px;
             }
             pre {
                 margin: 0;

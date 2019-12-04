@@ -5,8 +5,8 @@ date:   2019-12-01
 ---
 
 A few weeks ago, dtolnay [introduced the idea of autoref-based specialization][original-description], which makes it possible to use specialization-like behavior on stable Rust.
-While the approach has some fundamental limitations, some other limitations of this initial description of the technique *can* be overcome.
-This post describes an adopted version of autoref-based specialization called auto*de*ref-based specialization, which, by introducing two key changes, is more general than the original one and can be used in additional situation.
+While this approach has some fundamental limitations, some other limitations of the technique's initial description *can* be overcome.
+This post describes an adopted version of autoref-based specialization -- called auto*de*ref-based specialization -- which, by introducing two key changes, is more general than the original one and can be used in a wider range of situation.
 
 
 [original-description]: https://github.com/dtolnay/case-studies/tree/master/autoref-specialization
@@ -14,10 +14,11 @@ This post describes an adopted version of autoref-based specialization called au
 
 <div class="tldr" markdown="1">
 # 🔑 Key takeaways
-- TODO
+- Use auto*de*ref instead of autoref to use arbitrarily many specialization levels.
+- Use a simple wrapper type to avoid interference with existing blanket implementations for references.
 </div>
 
-**Foreword**
+#### Foreword
 
 One thing might be worth clarifying up front: the adopted version described here does not solve *the* main limitation of autoref-based specialization, namely specializing in a generic context.
 For example, given `fn foo<T: Clone>()`, you cannot specialize for `T: Copy` in that function with autoref-based specialization.
@@ -26,32 +27,42 @@ As such, the whole autoref-based specialization technique is still mainly releva
 
 
 <small>
-I'd like to thank dtolnay for coming up with and publicly describing this ingenious idea.
+I'd also like to thank dtolnay for coming up with and publicly describing this ingenious idea.
 </small>
 
 [parametricity]: https://en.wikipedia.org/wiki/Parametricity
 
+#### Table of contents
+
+- [Quick Recap: Method Resolution](#quick-recap-method-resolution)
+- [Using autoderef for ≥ two specialization levels](#using-autoderef-for--two-specialization-levels)
+- [Avoid interference with other blanket impls](#avoid-interference-with-other-blanket-impls)
+- [The Technique Summarized](#the-technique-summarized)
+- [Conclusion](#conclusion)
+
+<br>
 
 
 # Quick Recap: Method Resolution
 
 "Method resolution" is the process in which the compiler tries to figure out certain details about a method call expression `receiver.method(args)`.
-This mainly includes two [interdependent](https://stackoverflow.com/q/58889717/2408867) pieces of information which are not specified explicitly by the programmer:
+This mainly includes two [interdependent](https://stackoverflow.com/q/58889717/2408867) pieces of information which are not specified explicitly:
 
 - **Which method to call?** (An inherent method of a type? A method of a trait in scope?)
 - **How to coerce the receiver type to match the `self` type of the method?**
 
-Rust actually allows quite some flexibility to make method calls more convenient to use.
-Unfortunately, this rather complex method resolution sometimes results in [surprising behavior](https://dtolnay.github.io/rust-quiz/23) and [backwards-compatibility hazards](https://github.com/rust-lang/rust/pull/65819).
+Not requiring the programmer to explicitly write out these details make method calls more convenient to use.
+However, this rather complex method resolution sometimes results in [surprising behavior](https://dtolnay.github.io/rust-quiz/23) and [backwards-compatibility hazards](https://github.com/rust-lang/rust/pull/65819).
 Autoref-based specialization works by (ab)using the fact that method resolution prefers resolving to methods which require fewer type coercion of the receiver over methods that require more coercions.
 Specifically, the technique uses *autoref coercions*, hence the name.
 
-One consequence worth emphasizing is that this way, we are not limited like the "classical" specialization where one impl has to be strictly "more specific" than the other.
+One consequence worth emphasizing is that this way, we are not limited like the [specialization as proposed in RFC 1210][rfc1210] where one impl has to be strictly "more specific" than the other.
 As an example, an impl for `String` is strictly more specific than an impl for `T: Display`, whereas the two impls `T: Display` and `T: Debug` do not have this relationship in either direction (since neither is a super trait bound of the other).
 With generalized autoref-based specialization, we can simply define an ordered list of impls and the first one that applies to the receiver type is used.
-I will call one entry in this list a "specialization level".
-Specialization levels do not have to have "strictly more specific" relationships at all!
+I will simply call one entry in this list a "specialization level".
+Specialization levels do not have to have "strictly more specific" relations with one another at all!
 
+[rfc1210]: https://github.com/rust-lang/rfcs/blob/master/text/1210-impl-specialization.md
 
 
 # Using auto*de*ref for ≥ two specialization levels
@@ -95,7 +106,7 @@ Method resolution actually just cares about the type of `self`, and *not* `Self`
 
 Having too few `&` in the method call leads to strange errors (e.g. first and second priority switched).
 This is due to method resolution trying receiver types in an unintuitive order.
-For very detailed information about this, checkout [this beast of a StackOverflow post](https://stackoverflow.com/q/28519997/2408867) (one answer is mine).
+For very detailed information about this, checkout [this beast of a StackOverflow post](https://stackoverflow.com/q/28519997/2408867) (one of the answers is mine).
 
 With these adjustments, [our example now works as we wanted](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=b95c7db29d933627b11fecfbe26c86d4).
 By using autoderef instead of autoref, we can use as many specialization levels as we want.
@@ -107,12 +118,104 @@ By writing this post and testing things again, I noticed this simpler and more s
 </small>
 
 
+# Avoid interference with other blanket impls
+
+Returning to useful traits again, let's try the new auto*de*ref-based trick with `String` and `Display`:
+
+```rust
+trait ViaString {
+    fn foo(&self) { println!("String"); }
+}
+impl ViaString for &String {}
+
+trait ViaDisplay {
+    fn foo(&self) { println!("Display"); }
+}
+impl<T: Display> ViaDisplay for T {}
 
 
-<br>
-<br>
-<br>
-<br>
+(&&String::from("hi")).foo();
+```
 
-TODO:
-- ...
+[Compiling this](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=bb5dfc1db8d316f3e7228ed108c9af0b) results in `error[E0034]: multiple applicable items in scope`.
+Quite unfortunate and surprising, given that the example with our dummy traits worked.
+Figuring out what went wrong here took me way longer than I'd like to admit.
+The `Display` trait has an interfering blanket impl:
+
+```rust
+impl<T> Display for &T    // <-- implemented for &T, overlaps with our impls
+where
+    T: Display + ?Sized,
+{ ... }
+```
+
+And `Display` is by far not the only trait in `std` that has an impl like that.
+Luckily, a workaround is pretty simple: just use a wrapper type.
+
+```rust
+struct Wrap<T>(T);
+
+impl ViaString for &Wrap<String> {}
+impl<T: Display> ViaDisplay for Wrap<T> {}
+```
+
+This stops all interference with other impls as you are in full control over what traits `Wrap` implements.
+
+Of course, by now, the method calls have become quite ugly: `(&&&Wrap(receiver)).foo()` is not how normal people want to call their methods.
+That's why -- as mentioned in the introduction -- this approach is mostly useful in combination with macros, where the macro can easily emit these strange method calls.
+
+
+# The Technique Summarized
+
+Lets assume you have an ordered list of N sets of types ("specialization levels"), e.g. (0)&nbsp;`String`, (1)&nbsp;`T: Display`, (2)&nbsp;`T: Debug`.
+You want calls of your method `foo` to dispatch via the first (in the order of your list) set of types that contains the receiver type of the method call, e.g. `String` dispatches via (0), while `u32` dispatches via (1).
+To make this happen, you have to:
+
+- Create the type `struct Wrap<T>(T)`.
+- For each specialization level with index `i` in your list:
+    - Create a trait `Via⟨desc⟩` where `⟨desc⟩` is a good description of that level (e.g. `ViaDisplay`).
+    Add the method `foo` to this trait.
+    - Implement that trait for `⟨refs⟩ Wrap<⟨set⟩>` where `⟨refs⟩` is simply `N - i - 1` times `&`, and `⟨set⟩` describes the set of types for this specialization level. E.g. `impl ViaString for &&Wrap<String>` or `impl<T: Display> ViaDisplay for &Wrap<T>`.
+- For your method call:
+    - Make sure all `Via*` traits are in scope.
+    - Wrap your receiver type `( ⟨refs⟩ Wrap<⟨receiver⟩> ).method()` where `⟨refs⟩` is N times `&` and `⟨receiver⟩` is the original receiver. E.g. `(&&&Wrap(r)).method()`.
+
+[**Full example**](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=f76739e2736a311530349f14477aa54c):
+
+```rust
+struct Wrap<T>(T);
+
+trait ViaString { fn foo(&self); }
+impl ViaString for &&Wrap<String> {
+    fn foo(&self) { println!("String: {}", self.0); }
+}
+
+trait ViaDisplay { fn foo(&self); }
+impl<T: Display> ViaDisplay for &Wrap<T> {
+    fn foo(&self) { println!("Display: {}", self.0); }
+}
+
+trait ViaDebug { fn foo(&self); }
+impl<T: Debug> ViaDebug for Wrap<T> {
+    fn foo(&self) { println!("Debug: {:?}", self.0); }
+}
+
+// Test method calls
+(&&&Wrap(String::from("hi"))).foo();
+(&&&Wrap(3)).foo();
+(&&&Wrap(['a', 'b'])).foo();
+```
+
+Of course, this exact recipe does not fit all situations.
+For example, you likely have to combine it with the [*type tag* technique described in dtolnay's document](https://github.com/dtolnay/case-studies/tree/master/autoref-specialization#realistic-application).
+But this brief "algorithm" is a good start.
+
+
+
+# Conclusion
+
+Autoderef-based specialization as explained in this post is more versatile than the original description by dtolnay, but does not get around the fundamental limitations of the general approach.
+The technique can be immensely useful when used together with macros, but is too limited and verbose for general adoption beyond those use-cases.
+A proper "specialization solution" is certainly required in Rust.
+
+I personally use autoderef-based specialization for the work-in-progress [`domsl` library](https://github.com/LukasKalbertodt/domsl), which is also the reason why I started toying dtolnay's idea in the first place.

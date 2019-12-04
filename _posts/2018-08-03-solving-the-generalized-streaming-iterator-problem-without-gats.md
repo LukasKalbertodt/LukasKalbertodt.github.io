@@ -301,7 +301,7 @@ Nicholas Matsakis introduced that pattern in [one of his blog posts about GATs](
 Said pattern is made of two parts:
 
 - **Family types**: to the type system, these are normal types. But semantically, they *represent* type constructors (generic types without their generic parameters applied). For example, a type `VecFamily` could *represent* the type constructor `Vec`.
-<div style="height: 10px"></div>
+
 - **Family trait**: a trait that abstracts over some family types.
 
 The trick is how to actually use the type constructor that is being represented. For that we use associated types and treat the family type as a function from types/lifetimes to type. Traits with associated types allow us to model type level functions. (*Side note*: this can be used to do arbitrary computations at compile time, see [`typenum`](https://crates.io/crates/typenum) for example.)
