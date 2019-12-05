@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Generalized Autoref-Based Specialization"
-date:   2019-12-04
+date:   2019-12-05
 ---
 
 A few weeks ago, dtolnay [introduced the idea of autoref-based specialization][original-description], which makes it possible to use specialization-like behavior on stable Rust.
