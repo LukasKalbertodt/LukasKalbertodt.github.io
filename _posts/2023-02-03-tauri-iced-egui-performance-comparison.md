@@ -75,7 +75,7 @@ If you find any factual error, please let me know so that I can fix the post :)
             <td>Desktop</td>
             <td>🟢 via OS webview</td>
             <td>🟢 wgpu-based</td>
-            <td>🟢 OpenGL-based</td>
+            <td>🟢 backend-agnostic, default backend is OpenGL-based</td>
         </tr>
         <tr>
             <td>Web</td>
