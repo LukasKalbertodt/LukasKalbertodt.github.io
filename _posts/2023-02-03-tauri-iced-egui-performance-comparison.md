@@ -93,7 +93,7 @@ If you find any factual error, please let me know so that I can fix the post :)
         <tr>
             <td>Stability/Maturity</td>
             <td>🟢 1.0, big community, has sponsors, multiple devs, has Governance page</td>
-            <td>🟠 0.7, "experimental", active development since 2019, mainly one dev, used a lot</td>
+            <td>🟠 0.7, "experimental", active development since 2019, used a lot</td>
             <td>🟠 0.20, “in active development”, “interfaces in flux”, “lacks features”, active development since 2019, mainly one dev, used a lot</td>
         </tr>
         <tr>
