@@ -311,4 +311,6 @@ Input lag in frames (each tested multiple times):
 I checked Tauri, Sublime Text, and VSCode and all three scroll with 30–60fps.
 Sublime hits the 60fps more often than the other two, but also skips a frame from time to time.
 
+---
 
+Discuss [on Reddit](https://www.reddit.com/r/rust/comments/10sqmz3/tauri_vs_iced_vs_egui_rust_gui_framework/).
