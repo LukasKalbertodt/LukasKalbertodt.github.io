@@ -155,8 +155,7 @@ If you find any factual error, please let me know so that I can fix the post :)
 # Performance
 
 ## Important disclaimer
-Everything was measured on my Ubuntu 20.04, Gnome 3.36.8, X11, Nvidia proprietary drivers, without animations (disabled in Gnome Tweaks).
-60Hz monitor (which doesn’t matter as Gnome does not support >60hz 😑).
+Everything was measured on my Ubuntu 20.04, Gnome 3.36.8, X11, Nvidia proprietary drivers, without animations (disabled in Gnome Tweaks), 60Hz monitor.
 I hardly changed any desktop/Gnome configuration, but still: the setup could be borked for any number of reasons (#linux).
 The fact that moving windows around was not always 60fps is already an indicator that something is wrong.
 
