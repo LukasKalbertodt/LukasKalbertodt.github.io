@@ -79,9 +79,9 @@ If you find any factual error, please let me know so that I can fix the post :)
         </tr>
         <tr>
             <td>Web</td>
-            <td>🔴 not built-in, manual setup possible</td>
+            <td>🟡 not built-in, manual setup possible</td>
             <td>🟠 experimental, via <a href="https://github.com/iced-rs/iced_web"><code>iced_web</code></a></td>
-            <td>🟠 via WebGL<sup>†</sup></td>
+            <td>🔴 via WebGL<sup>†</sup></td>
         </tr>
         <tr class="table-sep"></tr>
         <tr>
