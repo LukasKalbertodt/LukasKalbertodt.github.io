@@ -1,7 +1,7 @@
 # Site settings
 title: "Lukasʼ Blog"
 email: lukas.kalbertodt@gmail.com
-description: "A blog about programming, Rust, typography, language and stuff."
+description: "A blog about programming, Rust, computer graphics and other stuff."
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://lukaskalbertodt.github.io" # the base hostname & protocol for your site
 github_username: LukasKalbertodt
