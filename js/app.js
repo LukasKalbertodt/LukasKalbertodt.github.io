@@ -14,7 +14,10 @@ function addRandomEmojiTimer() {
             '🐻',
             '🧀',
             '🍉',
-            '🍆',
+            '🦊',
+            '🐘',
+            '🦔',
+            '🍇',
         ];
 
         elem.innerHTML = options[Math.floor(Math.random() * options.length)];
