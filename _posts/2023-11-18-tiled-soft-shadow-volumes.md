@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Tiled per-triangle soft shadow volumes"
-date:   2023-11-10
+date:   2023-11-18
 ---
 
 In this post, I want to share a technique for rendering variable penumbra soft shadows in real time by using per-triangle shadow volumes.
