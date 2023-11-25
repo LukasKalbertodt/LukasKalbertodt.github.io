@@ -10,14 +10,10 @@ Culling shadow volumes is done per 16×16 screen tile (similar to "tiled deferre
 The resulting shadows are alias-free, work correctly with multiple casters at different distances, and even exhibit interesting real-world artifacts.
 While I think this is very interesting and promising, it's still nowhere near production-ready for most games.
 
-<video
-    src="/assets/tssv/banner.webm"
-    style="width: 100%;"
-    muted
-    controls
-    loop
-    playsinline
-></video>
+<video style="width: 100%;" muted controls loop playsinline>
+    <source src="/assets/tssv/banner.webm" type="video/webm; codecs=vp9" />
+    <source src="/assets/tssv/banner.mp4" type="video/mp4" />
+</video>
 
 <div class="tldr" markdown="1">
 # 🔑 Key takeaways
@@ -107,14 +103,11 @@ However, that is incorrect: two triangles could both block the left half of the 
 The fragment would be 50% shadowed, but summing up both overlap areas (0.5 + 0.5) would result in a shadow amount of 1.
 The artifacts caused by this can be seen in this video:
 
-<video
-    src="/assets/tssv/raster-comparison.webm"
-    style="width: 100%;"
-    muted
-    controls
-    loop
-    playsinline
-></video>
+<video style="width: 100%;" muted controls loop playsinline>
+    <source src="/assets/tssv/raster-comparison.webm" type="video/webm; codecs=vp9" />
+    <source src="/assets/tssv/raster-comparison.mp4" type="video/mp4" />
+</video>
+
 
 
 Instead, all projected triangles are rasterized to a 16×16 grid represented as `array<u32, 8>` (i.e. a bitset).
