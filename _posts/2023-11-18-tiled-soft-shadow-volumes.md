@@ -20,7 +20,7 @@ While I think this is very interesting and promising, it's still nowhere near pr
 - Produces realistic soft shadows with variable penumbra
 - Tile-based culling similar to tiled deferred rendering
 - 60 FPS at 4k with 13M triangles in scene (on RTX 4070), but varies a lot depending on multiple factors
-- Textured geometry possible in theory, likely infeasible in practice
+- Textured geometry (alpha masking) possible in theory, likely infeasible in practice
 </div>
 
 <br />
@@ -101,7 +101,7 @@ The `max(0.0001, ...)` deals with `tmp.z = 0` and while looking quick'n'dirty, i
 First, I tried to [analytically determine the exact overlap area of disk and the projected triangle](https://stackoverflow.com/a/77118843/2408867) and then add up all those overlap areas.
 However, that is incorrect: two triangles could both block the left half of the sun.
 The fragment would be 50% shadowed, but summing up both overlap areas (0.5 + 0.5) would result in a shadow amount of 1.
-The artifacts caused by this can be seen in this video:
+The artifacts caused by this can be seen in this video (notice how the human shadow on the left grows outwards when the tree shadow gets closer):
 
 <video style="width: 100%;" muted controls loop playsinline>
     <source src="/assets/tssv/raster-comparison.webm" type="video/webm; codecs=vp9" />
@@ -182,9 +182,9 @@ You can compare the visible banding artifacts here:
 The given durations are for only the rasterization step for a specific scene, and are very rough estimates.
 For comparison, the 16×16 grid explained above took 5ms.
 
-## Texturing?
+## Texturing/alpha masking?
 
-As with most per-triangle shadow volume techniques, using textures is possible, at least in theory.
+As with most per-triangle shadow volume techniques, using textures to make part of the geometry transparent is possible, at least in theory.
 In practice, this would likely make the actual rasterization a lot slower.
 Currently, each scanline merely needs a few adds, multiplications and bit-operations.
 To use texturing, the texture coordinate needs to be interpolated and for each pixel that is not yet occluded, a texture fetch needs to happen.
