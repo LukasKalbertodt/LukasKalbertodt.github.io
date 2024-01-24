@@ -83,7 +83,7 @@ Then, transforming from world to sun disk space looks like this:
 
 ```rust
 let tmp = (to_light_space_matrix * v0) - (to_light_space_matrix * fragment_pos);
-let v0_in_disk_space = tmp.xy / max(0.0001, sin(angular_radius) * abs(tmp.z));
+let v0_in_disk_space = tmp.xy / (sin(angular_radius) * tmp.z);
 ```
 The second line performs the perspective divide and uses the angular radius as field of view.
 Usually, there is actually quite a bit of hidden complexity here: a triangle is not necessarily a triangle after perspective divide.
@@ -91,9 +91,9 @@ If some, but not all vertices of the triangle are behind the camera (i.e. the si
 Hardware rasterizer typically deal with this by clipping the triangle before perspective divide, but there are alternative approaches called "clip-less rasterization".
 For more information see [this post](http://threadlocalmutex.com/?p=35), [this post](https://www.gamedeveloper.com/business/in-depth-software-rasterizer-and-triangle-clipping), or [this patent](https://patentimages.storage.googleapis.com/0e/71/dd/6f08549852c46f/US6765575.pdf).
 
-Luckily, ignoring the complexity by slapping `abs` around `tmp.z` seems to work in this case.
-The `max(0.0001, ...)` deals with `tmp.z = 0` and while looking quick'n'dirty, it seems to work well without introducing any artifacts.
-
+I dealt with the problem by flipping the line equations depending on the sign of `z` value.
+This is similar to the techniques described in the links above.
+See the `xor_mask` calculation in the shader code linked below.
 
 
 ## Determine occlusion via rasterization
